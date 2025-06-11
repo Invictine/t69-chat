@@ -1,10 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import ChatGPTClone from './gptclone'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ChatGPTClone />
   </StrictMode>,
 )
+
+
+
