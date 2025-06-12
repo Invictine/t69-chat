@@ -17,8 +17,9 @@ const ChatInput: React.FC = () => {
         left: 0,
         right: 0,
         width: "100%",
-        backgroundColor: "#221D27",
+        backgroundColor: 'transparent',
         py: 0,
+        px: 2,
       }}
     >
         <Box 
