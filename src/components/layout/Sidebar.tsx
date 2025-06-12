@@ -18,8 +18,8 @@ const Sidebar: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        backgroundColor: "#0e0c15",
-        width: "240px"
+        backgroundColor: "#181116",
+        width: "256px"
       }}
     >
       <Box p={2} pb={1.5} display="flex" flexDirection="column" height="100%">
@@ -99,15 +99,11 @@ const Sidebar: React.FC = () => {
                 {conv.title}
               </Typography>
             </ListItemButton>
-          ))}        </Box>        {/* User section with custom UserMenu */}
-        <Box sx={{ 
-          px: 1.5,
-          py: 1,
-          mt: 1,
-          borderTop: "1px solid rgba(255, 255, 255, 0.1)"
-        }}>
+          ))}        </Box>        
+          
+          {/* User section with custom UserMenu */}
           <UserMenu />
-        </Box>
+
       </Box>
     </Box>
   );

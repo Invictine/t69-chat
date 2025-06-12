@@ -17,22 +17,22 @@ const ChatInput: React.FC = () => {
         left: 0,
         right: 0,
         width: "100%",
-        backgroundColor: "#121212",
+        backgroundColor: "#221D27",
         py: 0,
       }}
     >
         <Box 
           sx={{ 
             width: "100%",
-            maxWidth: "780px",
+            maxWidth: "765px",
             mx: "auto",
-            p: 0.7,
+            p: 0.8,
             pb: 0,
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#5a5a7c",
+            backgroundColor: "#271F2B",
             border: "1px solid rgba(39, 39, 42, 0.5)",
-            borderRadius: "16px 16px 0 0",
+            borderRadius: "20px 20px 0 0",
             zIndex: 0,
           }}
         >
@@ -41,10 +41,10 @@ const ChatInput: React.FC = () => {
           width: "100%",
           maxWidth: "780px",
           mx: "auto",
-          px: 1,
+          px: 0,
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#18181b",
+          backgroundColor: "#2A2431",
           border: "1px solid rgba(39, 39, 42, 0.5)",
           borderRadius: "16px 16px 0 0",
           zIndex: 1,
@@ -60,12 +60,14 @@ const ChatInput: React.FC = () => {
             background: "transparent",
             border: "none",
             outline: "none",
-            color: isGenerating ? "#9ca3af" : "#d4d4d8",
+            color: isGenerating ? "#9ca3af" : "#EEEDF0",
+            
             fontSize: "1rem",
             width: "100%",
-            padding: "22px 12px 35px 12px",
+            padding: "18px 12px 40px 12px",
             cursor: isGenerating ? "not-allowed" : "text",
           }}
+          
         />
         
         {/* Bottom row: Controls */}
@@ -73,8 +75,8 @@ const ChatInput: React.FC = () => {
           display: "flex", 
           alignItems: "center",
           justifyContent: "space-between",
-          px: 1.5,
-          pb: 1.5,
+          px: 0.5,
+          pb: 1,
         }}>          {/* Left side controls */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {/* Model selector */}
@@ -91,7 +93,7 @@ const ChatInput: React.FC = () => {
                 border: "none",
                 outline: "none",
                 cursor: "pointer",
-                color: "#a1a1aa",
+                color: "#DCC7D3",
                 p: 0.5,
                 mr: 1,
               }}
@@ -113,7 +115,7 @@ const ChatInput: React.FC = () => {
                 border: "none",
                 outline: "none",
                 cursor: "pointer",
-                color: "#a1a1aa",
+                color: "#DCC7D3",
                 p: 0.5,
               }}
             >
@@ -125,10 +127,10 @@ const ChatInput: React.FC = () => {
             component="button"
             onClick={() => input.trim() && !isGenerating && handleSend()}
             sx={{
-              width: "28px",
-              height: "28px",
-              backgroundColor: input.trim() && !isGenerating ? "#7f57c2" : "#3f3f46",
-              borderRadius: "4px",
+              width: "32px",
+              height: "32px",
+              backgroundColor: input.trim() && !isGenerating ? "#7f57c2" : "#4C2039",
+              borderRadius: "6px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -136,9 +138,10 @@ const ChatInput: React.FC = () => {
               opacity: input.trim() && !isGenerating ? 1 : 0.7,
               border: "none",
               outline: "none",
+              mr: 0.8,
             }}
           >
-            <ArrowUpwardIcon sx={{ fontSize: "16px", color: "#fff" }} />
+            <ArrowUpwardIcon sx={{ fontSize: "20px", color: "#ffff" }} />
           </Box>
         </Box>
       </Box>

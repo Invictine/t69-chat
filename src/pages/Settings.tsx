@@ -16,15 +16,21 @@ import {
 } from '@mui/material';
 import { useUser } from '@clerk/clerk-react';
 import { ArrowBack, LightMode } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Settings: React.FC = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [searchParams] = useSearchParams();
   
-  const [activeTab, setActiveTab] = React.useState('customization'); // Default to Customization tab
+  // Get tab from URL query parameter or default to 'customization'
+  const tabParam = searchParams.get('tab');
+  const validTabs = ['account', 'customization', 'history', 'models', 'api', 'attachments', 'contact'];
+  const defaultTab = validTabs.includes(tabParam || '') ? tabParam! : 'customization';
+  
+  const [activeTab, setActiveTab] = React.useState(defaultTab);
   const [displayName, setDisplayName] = React.useState('Pincer Prithu');
   const [occupation, setOccupation] = React.useState('');
   const [selectedTraits, setSelectedTraits] = React.useState<string[]>([]);

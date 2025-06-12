@@ -1,53 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Box, 
   IconButton, 
-  Menu, 
-  MenuItem, 
   Typography, 
   Avatar,
-  Divider 
 } from '@mui/material';
-import { 
-  Settings, 
-  ExpandMore 
-} from '@mui/icons-material';
 import { useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
-import SignOutButton from '../auth/SignOutButton';
 
 const UserMenu: React.FC = () => {
   const { user } = useUser();
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = () => {
+    navigate('/settings?tab=account');
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleSettingsClick = () => {
-    navigate('/settings');
-    handleClose();
-  };
 
   if (!user) return null;
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+    <Box sx={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}>
       <IconButton
         onClick={handleClick}
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: 1.5,
+          gap: 1,
           width: '100%',
           borderRadius: '8px',
-          p: 1,
+          px: 1,
+          py: 1,
+          my: 0.2,
           '&:hover': {
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
           }
@@ -55,7 +39,7 @@ const UserMenu: React.FC = () => {
       >
         <Avatar
           src={user.imageUrl}
-          sx={{ width: 32, height: 32 }}
+          sx={{ width: 35, height: 35, border: '2px solid #7a0046', bgcolor: '#7a0046', color: '#fff' }}
         >
           {user.firstName?.[0] || user.emailAddresses[0]?.emailAddress[0]?.toUpperCase()}
         </Avatar>
@@ -69,7 +53,8 @@ const UserMenu: React.FC = () => {
               fontWeight: 500,
               overflow: "hidden",
               textOverflow: "ellipsis",
-              whiteSpace: "nowrap"
+              whiteSpace: "nowrap",
+              my: 0,
             }}
           >
             {user.firstName || user.emailAddresses[0]?.emailAddress}
@@ -77,65 +62,22 @@ const UserMenu: React.FC = () => {
           <Typography 
             variant="caption" 
             sx={{ 
-              color: "#9ca3af", 
-              fontSize: "0.75rem",
+              color: "#ffff", 
+              fontSize: "0.7rem",
               display: "block",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              whiteSpace: "nowrap"
+              fontWeight: 400,
+              whiteSpace: "nowrap",
+              my: 0,
             }}
           >
-            {user.emailAddresses[0]?.emailAddress}
+            Free
           </Typography>
         </Box>
-
-        <ExpandMore sx={{ color: '#9ca3af', fontSize: 18 }} />
       </IconButton>
 
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          sx: {
-            backgroundColor: '#1a1a1a',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '8px',
-            minWidth: 200,
-            mt: 1,
-          }
-        }}
-        transformOrigin={{ horizontal: 'left', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-      >
-        <MenuItem 
-          onClick={handleSettingsClick}
-          sx={{ 
-            color: '#e0e0e0',
-            py: 1.5,
-            '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            }
-          }}
-        >
-          <Settings sx={{ mr: 2, fontSize: 18 }} />
-          Settings
-        </MenuItem>
-        
-        <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)' }} />
-        
-        <MenuItem 
-          sx={{ 
-            color: '#ef4444',
-            py: 1.5,
-            '&:hover': {
-              backgroundColor: 'rgba(239, 68, 68, 0.1)',
-            }
-          }}
-        >
-          <SignOutButton variant="menuItem" onSignOut={handleClose} />
-        </MenuItem>
-      </Menu>
+      
     </Box>
   );
 };

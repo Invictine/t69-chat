@@ -21,7 +21,7 @@ const Chat: React.FC = () => {
           flexGrow: 1, 
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#121212",
+          backgroundColor: "#221D27",
           position: "relative",
           overflow: "hidden"
         }}
