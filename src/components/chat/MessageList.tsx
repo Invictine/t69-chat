@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { useChatContext } from '../../context/ChatContext';
 import Message from './Message.tsx';
 
+
 const MessageList: React.FC = () => {
   const { messages, isGenerating } = useChatContext();
   const messagesEndRef = useRef<HTMLDivElement>(null);
