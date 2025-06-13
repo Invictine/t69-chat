@@ -41,6 +41,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [currentConv, setCurrentConv] = useState(0);
   const [selectedModel, setSelectedModel] = useState<LLMModel>(AVAILABLE_MODELS[2]);
   const [isGenerating, setIsGenerating] = useState(false);
+  
   // Convex queries and mutations
   const userConversations = useQuery(api.conversations.getUserConversations, 
     user ? { userId: user.id } : "skip"
@@ -69,6 +70,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     updatedAt: conv.updatedAt,
     messages: []
   }));
+
   // Load messages when conversation changes
   useEffect(() => {
     if (conversationMessages) {
@@ -86,17 +88,6 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setMessages([]);
     }
   }, [conversationMessages]);
-
-  // Create initial conversation for new users
-  useEffect(() => {
-    if (user && userConversations !== undefined && userConversations.length === 0) {
-      // User has no conversations, create a welcome conversation
-      createConversation({
-        title: 'Welcome to T69 Chat!',
-        userId: user.id,
-      });
-    }
-  }, [user, userConversations, createConversation]);
 
   const isEmptyChat = messages.length === 0;
 

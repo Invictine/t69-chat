@@ -91,15 +91,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
   const filteredConversations = conversations.filter(conv => 
     conv.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
   // Group conversations by date
   const today = new Date().toDateString();
   const todayConversations = filteredConversations.filter(conv => 
-    conv.timestamp && new Date(conv.timestamp).toDateString() === today
+    conv.updatedAt && new Date(conv.updatedAt).toDateString() === today
   );
   
   const olderConversations = filteredConversations.filter(conv => 
-    !conv.timestamp || new Date(conv.timestamp).toDateString() !== today
+    !conv.updatedAt || new Date(conv.updatedAt).toDateString() !== today
   );
 
   

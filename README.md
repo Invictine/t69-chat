@@ -12,12 +12,14 @@ A modern, multi-LLM chat interface built with React, TypeScript, and Material-UI
 - 🎯 **Multiple LLM Support** - Switch between OpenAI GPT-4o, GPT-4o Mini, and Google Gemini models
 - ⚡ **Real-time Streaming** - See responses appear as they're being generated
 - 🔐 **Secure Authentication** - User management powered by Clerk
+- 🗄️ **Cloud Database** - Persistent conversations stored in Convex with real-time sync
 - 🎨 **Modern Dark UI** - Beautiful, responsive design with Material-UI components
-- 💬 **Conversation Management** - Create and manage multiple chat sessions per user
+- 💬 **Multiple Conversations** - Create unlimited chat sessions per user with smart organization
 - 🔄 **Model Switching** - Change AI models mid-conversation
 - 👤 **Personalized Experience** - User profiles and personalized welcome messages
 - 📱 **Responsive Design** - Works perfectly on desktop and mobile
-- 🔒 **Environment-based API Keys** - Secure API key management
+- 🔍 **Search & Organization** - Find conversations easily with search and date grouping
+- ⚡ **Real-time Sync** - Conversations sync instantly across devices and tabs
 
 ## 🚀 Quick Start
 
@@ -51,13 +53,23 @@ A modern, multi-LLM chat interface built with React, TypeScript, and Material-UI
    VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
    ```
 
-4. **Start the development server:**
+4. **Set up Convex database:**
    ```bash
+   npx convex dev --configure
+   ```
+   This will create your Convex project and add the database URL to `.env.local`
+
+5. **Start the development servers:**
+   ```bash
+   # Terminal 1: Start Convex dev server
+   npx convex dev
+   
+   # Terminal 2: Start Vite dev server
    npm run dev
    ```
 
 5. **Open your browser:**
-   Visit `http://localhost:5173`
+   Visit `http://localhost:5173` (or the port shown in your terminal)
 
 ## 🔑 Getting API Keys
 
@@ -105,6 +117,7 @@ For detailed Clerk setup instructions, see [CLERK_SETUP.md](./CLERK_SETUP.md)
 - **Frontend**: React 18 + TypeScript + Vite
 - **UI Library**: Material-UI (MUI) 5
 - **Authentication**: Clerk
+- **Database**: Convex (real-time, serverless)
 - **AI APIs**: OpenAI + Google Generative AI
 - **Styling**: Material-UI + Custom CSS
 - **Build Tool**: Vite 6
