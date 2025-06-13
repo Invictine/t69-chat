@@ -30,20 +30,21 @@ const ModelSelector: React.FC = () => {
           display: "flex", 
           alignItems: "center", 
           cursor: "pointer",
-          backgroundColor: "#1e1e23",
+          backgroundColor: 'transparent',
           borderRadius: "6px",
-          px: 1.5,
-          py: 0.5,
-          mr: 1.5,
+          px: 1.2,
+          py: 0.8,
+          mr: 1,
+          ml: 0,
           '&:hover': {
             backgroundColor: "#2a2a30",
           }
         }}
       >
-        <Typography sx={{ color: "#a1a1aa", fontSize: "0.8rem", fontWeight: 500 }}>
+        <Typography sx={{ color: "#DCC7D3", fontSize: "0.85rem", fontWeight: 600 }}>
           {selectedModel.name}
         </Typography>
-        <KeyboardArrowDown sx={{ color: "#a1a1aa", fontSize: "1rem", ml: 0.5 }} />
+        <KeyboardArrowDown sx={{ color: "#DCC7D3", fontSize: "1rem", ml: 0.7 }} />
       </Box>
       
       <Menu

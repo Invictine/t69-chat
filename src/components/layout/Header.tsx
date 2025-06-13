@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import { LightMode, Settings } from '@mui/icons-material';
 import { useUser } from '@clerk/clerk-react';
-import AuthStatus from '../auth/AuthStatus';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   toggleDarkMode?: () => void;
@@ -11,6 +11,10 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = () => {
   const { user } = useUser();
   
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/settings?tab=customization');
+  };
   return (
     <Box 
       sx={{ 
@@ -48,13 +52,14 @@ const Header: React.FC<HeaderProps> = () => {
         )}
       </Box>      
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <AuthStatus />
-        <IconButton sx={{ color: "#9ca3af" }}>
-          <LightMode fontSize="small" />
-        </IconButton>
-        <IconButton sx={{ color: "#9ca3af", ml: 1 }}>
+        {/* <AuthStatus /> */}
+        <IconButton onClick={handleClick} sx={{ color: "#9ca3af"}}>
           <Settings fontSize="small" />
         </IconButton>
+        <IconButton sx={{ color: "#9ca3af", ml: 1 }}>
+          <LightMode fontSize="small" />
+        </IconButton>
+        
       </Box>
     </Box>
   );

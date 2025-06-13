@@ -21,22 +21,26 @@ const Chat: React.FC = () => {
           flexGrow: 1, 
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#121212",
+          backgroundColor: "#221D27",
           position: "relative",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         <Header />
         
+        {/* Chat content area - Takes most of the space */}
         <Box sx={{ 
-          flexGrow: 1, 
-          overflow: "auto",
-          pb: 10 // Add padding at bottom to accommodate the chat input
+          flexGrow: 1,
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
         }}>
           {isEmptyChat ? <WelcomeScreen /> : <MessageList />}
+          
+          {/* ChatInput is positioned absolutely within this container */}
+          <ChatInput />
         </Box>
-        
-        <ChatInput />
       </Box>
     </Box>
   );
