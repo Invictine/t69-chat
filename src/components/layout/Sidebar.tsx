@@ -92,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
 
   // Filter conversations based on search query
   const filteredConversations = conversations.filter(conv => 
-    conv.title.toLowerCase().includes(searchQuery.toLowerCase())
+    (conv.title ?? '').toLowerCase().includes(searchQuery.toLowerCase())
   );
   // Group conversations by date
   const today = new Date().toDateString();

@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import type { Theme } from "@mui/material/styles";
 import type { PaletteMode } from "@mui/material";
-import type { AppThemeOptions } from './theme';
+// Removed the conflicting import of AppThemeOptions
 
 // Define a shared theme interface for type consistency
 export interface AppThemeOptions {
