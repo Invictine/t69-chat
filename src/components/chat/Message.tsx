@@ -37,23 +37,14 @@ import {
   FormatQuote as QuoteIcon,
 } from '@mui/icons-material';
 import { format, isToday, isYesterday } from 'date-fns';
-
-// Define message type
-interface Message {
-  id: string;
-  sender: 'user' | 'bot';
-  content: string;
-  timestamp?: string;
-  model?: string;
-  tokens?: number;
-}
+import type { Message as ChatMessage } from '../../types';  // ← pull in the shared type
 
 interface MessageProps {
-  message: Message;
+  message: ChatMessage;
   isGenerating?: boolean;
   onFeedback?: (id: string, type: 'like' | 'dislike') => void;
   onCopy?: (id: string) => void;
-  previousMessage?: Message | null; // Add previous message prop
+  previousMessage?: ChatMessage | null;
 }
 
 // Language display mapping

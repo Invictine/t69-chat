@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap');
+@import url('https://fonts.cdnfonts.com/css/proxima-vf');          /* Proxima Vara */
+@import url('https://fonts.cdnfonts.com/css/berkeley-mono');       /* Berkeley Mono */
+@import url('https://fonts.cdnfonts.com/css/intel-one-mono');      /* Intel One Mono */
+@import url('https://fonts.cdnfonts.com/css/atkinson-hyperlegible'); /* Atkinson Hyperlegible */
+
 :root {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-main: 'Proxima Vara', system-ui, sans-serif;
+  --font-code: 'Berkeley Mono', monospace;
+
+  font-family: var(--font-main);
   line-height: 1.5;
   font-weight: 400;
 
@@ -112,6 +120,10 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+code, pre, .MuiTypography-root[class*="code"] {
+  font-family: var(--font-code) !important;
 }
 
 @media (prefers-color-scheme: light) {

@@ -9,7 +9,7 @@ import {
   Fade
 } from '@mui/material';
 import { useChatContext } from '../../context/ChatContext';
-import Message from './Message.tsx';
+import Message from './Message';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const MessageList: React.FC = () => {
@@ -134,15 +134,32 @@ const MessageList: React.FC = () => {
           )}
           
           {messages.map((message, index) => (
-            <Message 
+            <Box
               key={message.id}
-              message={message} 
-              isGenerating={isGenerating && index === messages.length - 1 && message.sender === 'bot'}
-              onFeedback={(id, type) => {
-                console.log(`Feedback for message ${id}: ${type}`);
+              sx={{
+                display: 'flex',
+                justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
+                color: message.sender === 'user' ? '#fff' : '#000',
               }}
-              previousMessage={index > 0 ? messages[index - 1] : null}
-            />
+            >
+              <Message
+                message={message}
+                isGenerating={
+                  isGenerating &&
+                  index === messages.length - 1 &&
+                  message.sender === 'bot'
+                }
+                // only give bot messages a feedback handler
+                onFeedback={
+                  message.sender === 'bot'
+                    ? (id, type) => {
+                        console.log(`Feedback for message ${id}: ${type}`);
+                      }
+                    : undefined
+                }
+                previousMessage={index > 0 ? messages[index - 1] : null}
+              />
+            </Box>
           ))}
           
           {isGenerating && messages.length === 0 && (

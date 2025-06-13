@@ -1,23 +1,23 @@
 import type { Id } from "../../convex/_generated/dataModel";
 
 export interface Message {
-  _id?: Id<"messages">;
-  id: string; // Keep for compatibility
+  _id: string;
+  id: string;
   content: string;
-  sender: 'user' | 'bot';
+  role: 'user' | 'assistant';
+  sender?: 'user' | 'bot'; // Added sender property
   timestamp: string;
   model?: string;
   tokens?: number;
 }
 
 export interface Conversation {
-  _id?: Id<"conversations">;
-  id: string; // Keep for compatibility  
-  title: string;
+  _id: Id<"conversations">;
+  title?: string;
+  userId: string;
   messages?: Message[];
-  userId?: string;
-  createdAt?: number;
-  updatedAt?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface LLMModel {

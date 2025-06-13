@@ -14,7 +14,10 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as conversations from "../conversations.js";
+import type * as helpers from "../helpers.js";
 import type * as messages from "../messages.js";
+import type * as mutations_conversations from "../mutations/conversations.js";
+import type * as userPreferences from "../userPreferences.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -26,7 +29,10 @@ import type * as messages from "../messages.js";
  */
 declare const fullApi: ApiFromModules<{
   conversations: typeof conversations;
+  helpers: typeof helpers;
   messages: typeof messages;
+  "mutations/conversations": typeof mutations_conversations;
+  userPreferences: typeof userPreferences;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

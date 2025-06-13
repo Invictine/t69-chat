@@ -21,7 +21,7 @@ interface ChatContextType {
   handleSuggestionClick: (suggestion: string) => void;
   setSelectedModel: (model: LLMModel) => void;
   deleteConversation: (index: number) => void;
-  clearAllConversations: () => void;
+  clearAllConversations: () => Promise<void>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -65,8 +65,13 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     id: conv._id,
     title: conv.title,
     userId: conv.userId,
-    createdAt: conv.createdAt,
-    updatedAt: conv.updatedAt,
+    // convert numeric timestamps to ISO strings to match Conversation type
+    createdAt: conv.createdAt != null 
+      ? new Date(conv.createdAt).toISOString() 
+      : undefined,
+    updatedAt: conv.updatedAt != null 
+      ? new Date(conv.updatedAt).toISOString() 
+      : undefined,
     messages: []
   }));
   // Load messages when conversation changes
@@ -76,6 +81,8 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
         _id: msg._id,
         id: msg._id,
         content: msg.content,
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        // ← ensure `sender` is set so MessageList can distinguish user vs bot
         sender: msg.sender,
         timestamp: new Date(msg.timestamp).toISOString(),
         model: msg.model,
@@ -126,8 +133,10 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (!currentConversationId) return;
 
     const userMessage: Message = {
+      _id: Date.now().toString(),
       id: Date.now().toString(),
       content: input.trim(),
+      role: 'user',
       sender: 'user',
       timestamp: new Date().toISOString(),
     };
@@ -136,7 +145,7 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await addMessage({
       conversationId: currentConversationId,
       content: userMessage.content,
-      sender: userMessage.sender,
+      sender: "user",
       timestamp: Date.now(),
     });
 

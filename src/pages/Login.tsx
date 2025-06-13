@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography, styled, keyframes } from '@mui/material';
-import { SignIn } from '@clerk/clerk-react';
+import { SignIn, useAuth } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 
 // Subtle background animation
 const gradientShift = keyframes`
@@ -133,6 +134,16 @@ const CohesiveCard = styled(Box)`
 `;
 
 const Login: React.FC = () => {
+  const { isLoaded, userId } = useAuth();
+  const navigate = useNavigate();
+
+  // as soon as clerk is loaded & we have a user, jump to /chat
+  useEffect(() => {
+    if (isLoaded && userId) {
+      navigate('/chat', { replace: true });
+    }
+  }, [isLoaded, userId, navigate]);
+
   return (
     <>
       {/* Gradient Background with Floating 69s */}
@@ -338,6 +349,7 @@ const Login: React.FC = () => {
             }
           }}>
             <SignIn 
+              redirectUrl="/chat"
               appearance={{
                 elements: {
                   rootBox: "w-full",

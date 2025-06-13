@@ -25,6 +25,7 @@ import {
   Dashboard as DashboardIcon
 } from '@mui/icons-material';
 import { useChatContext } from '../../context/ChatContext';
+import { useTheme } from '../../context/ThemeContext';
 import UserMenu from '../user/UserMenu';
 
 // Create a new type for sidebar props
@@ -43,6 +44,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
     clearAllConversations
   } = useChatContext();
   
+  const { themeOptions } = useTheme();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const [menuConvIndex, setMenuConvIndex] = useState<number>(-1);
@@ -110,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
           display: "flex",
           flexDirection: "column",
           height: "100%",
-          backgroundColor: "#181116",
+          backgroundColor: themeOptions.background.sidebar,
           width: "256px",
           transition: "width 0.3s ease",
           position: "relative",
@@ -125,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
               component="div" 
               sx={{ 
                 fontWeight: 600, 
-                color: '#d4d4d8', 
+                color: themeOptions.text.primary, 
                 flexGrow: 1,
                 fontSize: '1.1rem'
               }}
@@ -134,7 +137,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
             </Typography>
             <IconButton 
               onClick={onToggle}
-              sx={{ color: '#9ca3af' }}
+              sx={{ color: themeOptions.text.secondary }}
             >
               <MenuIcon />
             </IconButton>
@@ -145,15 +148,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
             fullWidth 
             onClick={handleNewConversation} 
             sx={{
-              backgroundColor: "#7a0046",
-              color: "white",
+              backgroundColor: themeOptions.button.primary,
+              color: themeOptions.button.text,
               borderRadius: "6px",
               textTransform: "none",
               fontWeight: 500,
               padding: "10px 16px",
               mb: 2,
               "&:hover": {
-                backgroundColor: "#640033",
+                backgroundColor: themeOptions.button.hover,
               }
             }}
           >
@@ -162,7 +165,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
           
           <Box 
             sx={{
-              backgroundColor: "#1e1c2e",
+              backgroundColor: themeOptions.background.input,
               borderRadius: "6px",
               display: "flex",
               alignItems: "center",
@@ -171,7 +174,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
               mb: 2
             }}
           >
-            <Search sx={{ color: "#9ca3af", fontSize: 18, mr: 1 }} />
+            <Search sx={{ color: themeOptions.text.secondary, fontSize: 18, mr: 1 }} />
             <input
               placeholder="Search your threads..."
               value={searchQuery}
@@ -180,7 +183,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 background: "transparent",
                 border: "none",
                 outline: "none",
-                color: "#9ca3af",
+                color: themeOptions.text.secondary,
                 fontSize: "0.875rem",
                 width: "100%",
               }}
@@ -194,7 +197,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 <Typography 
                   variant="caption" 
                   sx={{ 
-                    color: "#8b8b8b", 
+                    color: themeOptions.text.caption, 
                     fontSize: "0.7rem",
                     display: 'block',
                     pl: 1,
@@ -218,9 +221,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         mb: 0.5,
                         display: 'flex',
                         justifyContent: 'space-between',
-                        backgroundColor: convIndex === currentConv ? "rgba(255, 255, 255, 0.08)" : "transparent",
+                        backgroundColor: convIndex === currentConv ? themeOptions.background.selected : "transparent",
                         "&:hover": {
-                          backgroundColor: convIndex === currentConv ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.04)"
+                          backgroundColor: convIndex === currentConv ? themeOptions.background.selected : themeOptions.background.hover
                         }
                       }}
                     >
@@ -228,7 +231,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         noWrap 
                         sx={{ 
                           fontSize: "0.875rem", 
-                          color: convIndex === currentConv ? "#ffffff" : "#9ca3af",
+                          color: convIndex === currentConv ? themeOptions.text.primary : themeOptions.text.secondary,
                           flex: 1,
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
@@ -240,7 +243,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         size="small" 
                         onClick={(e) => handleMenuOpen(e, convIndex)}
                         sx={{ 
-                          color: "#9ca3af", 
+                          color: themeOptions.text.secondary, 
                           padding: 0.25,
                           visibility: convIndex === currentConv ? 'visible' : 'hidden',
                           '.MuiListItemButton-root:hover &': {
@@ -262,7 +265,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 <Typography 
                   variant="caption" 
                   sx={{ 
-                    color: "#8b8b8b", 
+                    color: themeOptions.text.caption, 
                     fontSize: "0.7rem",
                     display: 'block',
                     pl: 1,
@@ -286,9 +289,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         mb: 0.5,
                         display: 'flex',
                         justifyContent: 'space-between',
-                        backgroundColor: convIndex === currentConv ? "rgba(255, 255, 255, 0.08)" : "transparent",
+                        backgroundColor: convIndex === currentConv ? themeOptions.background.selected : "transparent",
                         "&:hover": {
-                          backgroundColor: convIndex === currentConv ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.04)"
+                          backgroundColor: convIndex === currentConv ? themeOptions.background.selected : themeOptions.background.hover
                         }
                       }}
                     >
@@ -296,7 +299,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         noWrap 
                         sx={{ 
                           fontSize: "0.875rem", 
-                          color: convIndex === currentConv ? "#ffffff" : "#9ca3af",
+                          color: convIndex === currentConv ? themeOptions.text.primary : themeOptions.text.secondary,
                           flex: 1,
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
@@ -308,7 +311,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                         size="small" 
                         onClick={(e) => handleMenuOpen(e, convIndex)}
                         sx={{ 
-                          color: "#9ca3af", 
+                          color: themeOptions.text.secondary, 
                           padding: 0.25,
                           visibility: convIndex === currentConv ? 'visible' : 'hidden',
                           '.MuiListItemButton-root:hover &': {
@@ -342,8 +345,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
             }}
             PaperProps={{
               sx: {
-                backgroundColor: "#1e1c2e",
-                color: "#d4d4d8",
+                backgroundColor: themeOptions.background.menu,
+                color: themeOptions.text.primary,
                 minWidth: 120,
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
               }
@@ -361,8 +364,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
             onClose={handleDeleteCancel}
             PaperProps={{
               sx: {
-                backgroundColor: "#1e1c2e",
-                color: "#d4d4d8",
+                backgroundColor: themeOptions.background.dialog,
+                color: themeOptions.text.primary,
                 borderRadius: 2,
                 minWidth: 300,
               }
@@ -370,14 +373,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
           >
             <DialogTitle sx={{ fontSize: "1rem", fontWeight: 600 }}>Delete Conversation</DialogTitle>
             <DialogContent>
-              <DialogContentText sx={{ color: "#9ca3af" }}>
+              <DialogContentText sx={{ color: themeOptions.text.secondary }}>
                 Are you sure you want to delete this conversation? This action cannot be undone.
               </DialogContentText>
             </DialogContent>
             <DialogActions sx={{ padding: 2 }}>
               <Button 
                 onClick={handleDeleteCancel} 
-                sx={{ color: "#9ca3af" }}
+                sx={{ color: themeOptions.text.secondary }}
               >
                 Cancel
               </Button>
@@ -385,9 +388,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 onClick={handleDeleteConfirm} 
                 variant="contained"
                 sx={{
-                  backgroundColor: "#e11d48",
+                  backgroundColor: themeOptions.button.danger,
                   "&:hover": {
-                    backgroundColor: "#be123c",
+                    backgroundColor: themeOptions.button.dangerHover,
                   }
                 }}
               >
@@ -402,8 +405,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
             onClose={handleClearAllCancel}
             PaperProps={{
               sx: {
-                backgroundColor: "#1e1c2e",
-                color: "#d4d4d8",
+                backgroundColor: themeOptions.background.dialog,
+                color: themeOptions.text.primary,
                 borderRadius: 2,
                 minWidth: 300,
               }
@@ -411,14 +414,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
           >
             <DialogTitle sx={{ fontSize: "1rem", fontWeight: 600 }}>Clear All Conversations</DialogTitle>
             <DialogContent>
-              <DialogContentText sx={{ color: "#9ca3af" }}>
+              <DialogContentText sx={{ color: themeOptions.text.secondary }}>
                 Are you sure you want to delete all conversations? This action cannot be undone.
               </DialogContentText>
             </DialogContent>
             <DialogActions sx={{ padding: 2 }}>
               <Button 
                 onClick={handleClearAllCancel} 
-                sx={{ color: "#9ca3af" }}
+                sx={{ color: themeOptions.text.secondary }}
               >
                 Cancel
               </Button>
@@ -426,9 +429,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 onClick={handleClearAllConfirm} 
                 variant="contained"
                 sx={{
-                  backgroundColor: "#e11d48",
+                  backgroundColor: themeOptions.button.danger,
                   "&:hover": {
-                    backgroundColor: "#be123c",
+                    backgroundColor: themeOptions.button.dangerHover,
                   }
                 }}
               >

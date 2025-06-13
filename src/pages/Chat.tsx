@@ -27,17 +27,25 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        height: "100vh",
+        /* Sidebar gradient from #1E1825 → #2B2531 */
+        background: "linear-gradient(90deg, #1E1825 0%, #2B2531 100%)"
+      }}
+    >
       {/* Sidebar */}
       <Sidebar isVisible={sidebarVisible} onToggle={toggleSidebar} />
       
       {/* Main Content */}
-      <Box 
-        sx={{ 
-          flexGrow: 1, 
+      <Box
+        sx={{
+          flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#221D27",
+          /* Chat area gradient from #2B2531 → #221D27 */
+          background: "linear-gradient(180deg, #2B2531 0%, #221D27 100%)",
           position: "relative",
           overflow: "hidden"
         }}
