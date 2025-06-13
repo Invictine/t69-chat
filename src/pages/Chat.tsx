@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
@@ -9,11 +9,27 @@ import { useChatContext } from '../context/ChatContext';
 
 const Chat: React.FC = () => {
   const { isEmptyChat } = useChatContext();
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  
+  useEffect(() => {
+    const savedState = localStorage.getItem('t69_sidebar_visible');
+    if (savedState !== null) {
+      setSidebarVisible(savedState === 'true');
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem('t69_sidebar_visible', sidebarVisible.toString());
+  }, [sidebarVisible]);
+  
+  const toggleSidebar = () => {
+    setSidebarVisible(prev => !prev);
+  };
 
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar isVisible={sidebarVisible} onToggle={toggleSidebar} />
       
       {/* Main Content */}
       <Box 
@@ -23,22 +39,25 @@ const Chat: React.FC = () => {
           flexDirection: "column",
           backgroundColor: "#221D27",
           position: "relative",
-          overflow: "hidden",
+          overflow: "hidden"
         }}
       >
-        <Header />
+        <Header 
+          sidebarVisible={sidebarVisible} 
+          onToggleSidebar={toggleSidebar} 
+        />
         
-        {/* Chat content area - Takes most of the space */}
+        {/* Chat content area */}
         <Box sx={{ 
           flexGrow: 1,
           position: "relative",
           overflow: "hidden",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "column"
         }}>
           {isEmptyChat ? <WelcomeScreen /> : <MessageList />}
           
-          {/* ChatInput is positioned absolutely within this container */}
+          {/* ChatInput */}
           <ChatInput />
         </Box>
       </Box>
