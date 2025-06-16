@@ -295,22 +295,7 @@ const HistoryTab: React.FC<HistoryTabProps> = ({
       <Typography variant="h5" sx={{ mt: 6, mb: 1, color: 'error.main' }}>
         Danger Zone
       </Typography>
-      <Typography variant="body2" sx={{ mb: 2 }}>
-        If your chats from before June 1st are missing, click to restore them. Contact support if you have issues.
-      </Typography>
-      <Button
-        variant="contained"
-        sx={{
-          mb: 2,
-          backgroundColor: 'error.dark',
-          '&:hover': { backgroundColor: 'error.main' }
-        }}
-        onClick={handleRestoreOldChats}
-        disabled={isLoading.restore}
-        startIcon={isLoading.restore ? <CircularProgress size={16} color="inherit" /> : null}
-      >
-        {isLoading.restore ? "Restoring..." : "Restore old chats"}
-      </Button>
+     
 
       <Typography variant="body2" sx={{ mb: 1, color: '#9ca3af' }}>
         Permanently delete your history from both your local device and our servers.*

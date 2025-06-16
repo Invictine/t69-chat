@@ -133,7 +133,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onToggle }) => {
                 fontSize: '1.1rem'
               }}
             >
-              T3.chat
+              T69.chat
             </Typography>
             <IconButton 
               onClick={onToggle}
