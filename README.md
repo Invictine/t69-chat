@@ -1,6 +1,6 @@
 # T69 Chat
 
-A desktop and browser chat prototype built to compare OpenAI and Google Gemini models from one React workspace. It combines a Vite frontend with optional Clerk sign-in, Convex conversation storage, and an Electron shell.
+I wanted one place to try different model clients without splitting the experiment across apps. T69 Chat brings OpenAI and Google model choices together with Markdown/code/math rendering, optional Clerk sign-in, Convex conversation storage, and an Electron shell. It’s a local prototype with configuration still required; fork it, swap in a provider, and share what makes model comparisons useful to you.
 
 ## Preview
 
