@@ -171,3 +171,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Built with ❤️ using React, TypeScript, and modern web technologies**
+
+## Architecture
+
+```mermaid
+flowchart LR
+  React[React and Vite UI] --> Clerk[Clerk sign-in]
+  React --> Convex[Convex conversation data]
+  React --> Models[OpenAI and Google model clients]
+  Electron[Optional Electron shell] --> React
+```
+
+Provider keys and Clerk/Convex values must match [SETUP.md](SETUP.md), [CLERK_SETUP.md](CLERK_SETUP.md), and [CONVEX_INTEGRATION.md](CONVEX_INTEGRATION.md). The setup guides are the source of truth for current configuration.
