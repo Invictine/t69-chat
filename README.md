@@ -1,4 +1,12 @@
-# T69 Chat 🤖
+# T69 Chat
+
+A desktop and browser chat prototype that puts OpenAI and Google Gemini models in one conversation workspace.
+
+## Try it locally
+
+Follow the quick start below to configure your own model credentials. See the [Clerk setup](CLERK_SETUP.md) and [Convex integration](CONVEX_INTEGRATION.md) when testing authentication and storage. Start a new chat, choose a model, and compare how providers handle the same prompt.
+
+This is a local development prototype. A public deployment needs server-side handling of model API credentials.
 
 A modern, multi-LLM chat interface built with React, TypeScript, and Material-UI. Chat with different AI models including OpenAI's GPT and Google's Gemini models in real-time.
 
