@@ -1,6 +1,6 @@
 # T69 Chat
 
-Evaluating model responses side-by-side shouldn't require juggling separate browser tabs. T69 Chat provides a unified local interface connecting OpenAI and Google Gemini APIs within a shared conversation workspace for direct prompt comparison and output evaluation. Lightweight Node.js backend coordinates streaming completions with client-side markdown formatting. Clone the repo, add your API keys, and adapt the workspace to your benchmarking workflows.
+I wanted one place to try different model clients without splitting the experiment across apps. T69 Chat brings OpenAI and Google model choices together with Markdown/code/math rendering, optional Clerk sign-in, Convex conversation storage, and an Electron shell. It’s a local prototype with configuration still required; fork it, swap in a provider, and share what makes model comparisons useful to you.
 
 [![T69 Chat](media/overview.png)](media/walkthrough.mp4)
 *Click preview above to watch illustrated architecture overview.*
